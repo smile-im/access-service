@@ -1,5 +1,5 @@
 # AccessService
-
+用于长连接接入，前期支持grpc流模式，后期支持websocket
 
 
 ## TODO
