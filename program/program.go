@@ -35,8 +35,14 @@ func (p *Program) Run() {
 	// 前端服务对象
 	foreground := services.NewForeground()
 	// 启动服务
-	p.srv.Serve(func(grpcServer *grpc.Server) {
+	go p.srv.Serve(func(grpcServer *grpc.Server) {
 		accesspb.RegisterAccessServer(grpcServer, foreground)
+	})
+	// 后台服务
+	admin := services.NewAdmin()
+	// 启动服务
+	p.srv.Serve(func(grpcServer *grpc.Server) {
+		accesspb.RegisterAdminAccessServer(grpcServer, admin)
 	})
 	return
 }

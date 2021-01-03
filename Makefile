@@ -1,9 +1,7 @@
 BINARY_NAME=access-service # 二进制文件名
 SERVICE_NAME=access-service # 注册服务名
-COMPILE_TIME = $(shell date +"%Y%M%d%H%M%S") # 编译时间
 BRANCH=`git symbolic-ref --short -q HEAD` # git提交版本
-VERSION="-X main.VERSION=`cat 'version'` -X main.COMPILE_DATE=`$(COMPILE_TIME)` -X main.GIT_HASH=`git rev-parse HEAD` -s"
-REGISTRY= # 私有镜像地址
+VERSION="-X main.VERSION=`cat 'version'` -X 'main.COMPILE_DATE=`date`' -X 'main.GO_VERSION=`go version`' -X main.GIT_HASH=`git rev-parse HEAD`"REGISTRY= # 私有镜像地址
 
 default:
 	@echo 'Usage of make: [ build | linux_build | windows_build ｜ run | docker_build | clean ]'

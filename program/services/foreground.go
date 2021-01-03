@@ -1,8 +1,10 @@
 package services
 
 import (
-	"context"
+	"io"
+	"log"
 
+	"github.com/micro-kit/micro-common/logger"
 	"github.com/smile-im/microkit-client/proto/accesspb"
 )
 
@@ -21,12 +23,18 @@ func NewForeground() *Foreground {
 }
 
 // Connect 连接实时消息
-func (s *Foreground) Connect(ctx context.Context, req *accesspb.ConnectRequest) (*accesspb.ConnectReply, error) {
-	// 验证参数是否错误
-
-	// TODO 逻辑代码
-
-	// 返回结果
-	reply := &accesspb.ConnectReply{}
-	return reply, nil
+func (s *Foreground) Connect(stream accesspb.Access_ConnectServer) error {
+	for {
+		in, err := stream.Recv()
+		if err == io.EOF {
+			logger.Logger.Debugw("读取到流结束", "err", err)
+			return nil
+		}
+		if err != nil {
+			logger.Logger.Errorw("读取新流错误", "err", err)
+			return nil
+		}
+		log.Println(in.Msg)
+	}
+	return nil
 }

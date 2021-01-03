@@ -13,6 +13,7 @@ replace (
 )
 
 require (
+	github.com/jinzhu/gorm v1.9.12
 	github.com/micro-kit/micro-common v0.0.0-00010101000000-000000000000
 	github.com/micro-kit/microkit v0.0.0-00010101000000-000000000000
 	github.com/smile-im/microkit-client/proto/accesspb v0.0.0-00010101000000-000000000000
