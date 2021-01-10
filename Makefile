@@ -1,5 +1,5 @@
 BINARY_NAME=access-service # 二进制文件名
-SERVICE_NAME=access-service # 注册服务名
+SERVICE_NAME=access # 注册服务名
 BRANCH=`git symbolic-ref --short -q HEAD` # git提交版本
 VERSION="-X main.VERSION=`cat 'version'` -X 'main.COMPILE_DATE=`date`' -X 'main.GO_VERSION=`go version`' -X main.GIT_HASH=`git rev-parse HEAD`"REGISTRY= # 私有镜像地址
 

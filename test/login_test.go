@@ -1,12 +1,8 @@
 package test
 
 import (
-	"context"
-	"encoding/json"
 	"log"
-	"sync"
 	"testing"
-	"time"
 
 	"github.com/smile-im/microkit-client/client/access"
 	"github.com/smile-im/microkit-client/proto/accesspb"

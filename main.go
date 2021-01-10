@@ -19,8 +19,8 @@ var (
 
 func main() {
 	// 系统日志显示文件和行号
-	// log.SetFlags(log.Lshortfile | log.LstdFlags)
-	log.SetFlags(log.Llongfile | log.LstdFlags)
+	log.SetFlags(log.Lshortfile | log.LstdFlags)
+	// log.SetFlags(log.Llongfile | log.LstdFlags)
 
 	// 判断是否是-v参数如果是，则输出版本信息
 	if len(os.Args) > 1 {

@@ -34,16 +34,17 @@ func New() *Program {
 func (p *Program) Run() {
 	// 前端服务对象
 	foreground := services.NewForeground()
-	// 启动服务
-	go p.srv.Serve(func(grpcServer *grpc.Server) {
-		accesspb.RegisterAccessServer(grpcServer, foreground)
-	})
 	// 后台服务
 	admin := services.NewAdmin()
 	// 启动服务
-	p.srv.Serve(func(grpcServer *grpc.Server) {
+	err := p.srv.Serve(func(grpcServer *grpc.Server) {
+		accesspb.RegisterAccessServer(grpcServer, foreground)
+	}, func(grpcServer *grpc.Server) {
 		accesspb.RegisterAdminAccessServer(grpcServer, admin)
 	})
+	if err != nil {
+		logger.Logger.Errorw("启动后台服务错误", "err", err)
+	}
 	return
 }
 

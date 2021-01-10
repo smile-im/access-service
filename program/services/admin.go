@@ -2,6 +2,8 @@ package services
 
 import (
 	"context"
+	"encoding/json"
+	"log"
 
 	"github.com/smile-im/microkit-client/proto/accesspb"
 )
@@ -23,7 +25,8 @@ func NewAdmin() *Admin {
 // CreateRoom 创建房间
 func (s *Admin) CreateRoom(ctx context.Context, req *accesspb.CreateRoomRequest) (*accesspb.CreateRoomReply, error) {
 	// 验证参数是否错误
-
+	js, _ := json.Marshal(req)
+	log.Println(string(js))
 	// TODO 逻辑代码
 
 	// 返回结果
